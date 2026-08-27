@@ -1,7 +1,7 @@
 'use client'
 
 import useWorkout from '@/domain/WorkoutSession/store'
-import { useEffect } from 'react'
+import { Suspense, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import useRest from '@/domain/RestSession/store'
 import RestBetweenSets from '@/component/Rest'
@@ -17,10 +17,10 @@ const WorkoutLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
   }, [workout, replace])
 
   return (
-    <>
+    <Suspense fallback={null}>
       {children}
       {restHydrated && <RestBetweenSets />}
-    </>
+    </Suspense>
   )
 }
 
